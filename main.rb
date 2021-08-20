@@ -39,8 +39,8 @@ end
 
 
 class Monster
-  attr_reader :name, :offense, :defense
-  attr_accessor :hp
+  attr_reader :offense, :defense
+  attr_accessor :hp, :name
 
   POWER_UP_RATE = 1.5
   CALC_HALF_HP = 0.5
@@ -57,22 +57,21 @@ class Monster
   def attack(brave)
 
     if @hp <= @triger_of_transform &&         @transform_flag == false
-
       @transform_flag = true
-
       transform
     end
 
-    puts "#{monster.name}の攻撃"
+    puts "#{@name}の攻撃"
     damage = @offense - brave.defense
     brave.hp -= damage
+    puts "#{brave.name}は#{damage}のダメージを受けた"
+    puts "#{brave.name}の残りHPは#{brave.hp}だ"
 
   end
 
   private
 
   def transform
-
     transform_name = "ドラゴン"
    
     puts <<~EOS
@@ -82,12 +81,8 @@ class Monster
 
     @offense *= POWER_UP_RATE
     @name = transform_name
-    
+  end
   
-end
-
-  
-
 end
 
 brave = Brave.new(name: "テリー", hp: 500, offense: 150, defense: 100)
