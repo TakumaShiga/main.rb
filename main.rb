@@ -42,12 +42,51 @@ class Monster
   attr_reader :name, :offense, :defense
   attr_accessor :hp
 
+  POWER_UP_RATE = 1.5
+  CALC_HALF_HP = 0.5
+
   def initialize(**params)
     @name = params[:name]
     @hp = params[:hp]
     @offense = params[:offense]
     @defense = params[:defense] 
+
+    @transform_flag = false
+    
+    @triger_of_transform = params[:hp] * CALC_HALF_HP
+
   end
+
+  def attack(brave)
+
+    if @hp <= @triger_of_transform &&         @transform_flag == false
+
+      @transform_flag = true
+
+      transform
+    end
+
+    puts "#{monster.name}の攻撃"
+    damage = @offense - brave.defense
+    brave.hp -= damage
+
+    puts "#{brave.name}は#{damage}ダメージを受けた"
+    puts "#{brave.name}の残りHPは#{brave.hp}だ"
+  end
+
+  private
+
+  def transform
+   
+    puts "#{monster.name}は怒っている"
+    puts "#{monster.name}はドラゴンに変身した"
+    puts "ドラゴンの攻撃"
+    puts "#{brave.name}は#{damage}のダメージを受けた"
+    puts "#{brave.name}の残りHPは#{brave.hp}だ"
+  
+end
+
+  
 
 end
 
