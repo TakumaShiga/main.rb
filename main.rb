@@ -50,11 +50,8 @@ class Monster
     @hp = params[:hp]
     @offense = params[:offense]
     @defense = params[:defense] 
-
     @transform_flag = false
-    
     @triger_of_transform = params[:hp] * CALC_HALF_HP
-
   end
 
   def attack(brave)
@@ -70,19 +67,22 @@ class Monster
     damage = @offense - brave.defense
     brave.hp -= damage
 
-    puts "#{brave.name}は#{damage}ダメージを受けた"
-    puts "#{brave.name}の残りHPは#{brave.hp}だ"
   end
 
   private
 
   def transform
+
+    transform_name = "ドラゴン"
    
-    puts "#{monster.name}は怒っている"
-    puts "#{monster.name}はドラゴンに変身した"
-    puts "ドラゴンの攻撃"
-    puts "#{brave.name}は#{damage}のダメージを受けた"
-    puts "#{brave.name}の残りHPは#{brave.hp}だ"
+    puts <<~EOS
+    #{@name}は怒っている
+    #{@name}が#{transform_name}に変身した
+    EOS
+
+    @offense *= POWER_UP_RATE
+    @name = transform_name
+    
   
 end
 
