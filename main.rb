@@ -1,15 +1,4 @@
-class Character
-  attr_reader :offense, :defense
-  attr_accessor :hp, :name
-
-  def initialize(**params)
-    @name = params[:name]
-    @hp = params[:hp]
-    @offense = params[:offense]
-    @defense = params[:defense]
-  end
-end
-
+require './character'
 
 class Brave < Character
   
@@ -54,6 +43,7 @@ class Brave < Character
       damage = params[:damage]
       target = params[:target]
 
+      target.hp -= damage
       target.hp = 0 if target.hp < 0 
       puts "#{target.name}は#{damage}のダメージを受けた"
     end
@@ -70,7 +60,6 @@ class Monster < Character
   CALC_HALF_HP = 0.5
 
   def initialize(**params)
-    
     super(
       name: params[:name],
       hp: params[:hp],
@@ -106,6 +95,7 @@ class Monster < Character
       damage = params[:damage]
       target = params[:target]
 
+      target.hp -= damage
       target.hp = 0 if target.hp < 0
       puts "#{target.name}は#{damage}のダメージを受けた"
     end
