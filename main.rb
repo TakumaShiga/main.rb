@@ -23,6 +23,8 @@ class Brave
     puts "#{monster.name}の残りHPは#{monster.hp}だ"
   end
 
+  private
+
   def decision_attack_type
     attack_num = rand(4)
     if attack_num == 0
@@ -81,13 +83,25 @@ class Monster
       @transform_flag = true
       transform
     end
-
     puts "#{@name}の攻撃"
-    damage = @offense - brave.defense
-    brave.hp -= damage
-    puts "#{brave.name}は#{damage}のダメージを受けた"
+
+    damage = calculate_damage(brave)
+    cause_damage(target: brave, damage: damage)
+
     puts "#{brave.name}の残りHPは#{brave.hp}だ"
 
+  end
+
+  def calculate_damage(target)
+    @offense - target.defense
+  end
+
+  def cause_damage(**params)
+    target = params[:target]
+    damage = params[:target]
+
+    target.hp -= damage
+    puts "#{brave.name}は#{damage}のダメージを受けた"
   end
 
   private
