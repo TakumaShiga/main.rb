@@ -124,5 +124,14 @@ monster = Monster.new(name: "スライム", hp: 250, offense: 200, defense: 100)
 
 loop do
   brave.attack(monster)
+
+  if monster.hp <= 0
+    break 
+  end
+
   monster.attack(brave)
+  if brave.hp <= 0
+    break
+  end
+
 end
