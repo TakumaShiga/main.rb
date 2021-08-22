@@ -28,12 +28,12 @@ class GamesController
       @brave.hp < 0 || @monster.hp < 0
     end
 
-    def battle_result
+    def brave_win?
       @brave.hp < 0
     end
 
     def battle_judgement
-      if battle_result
+      if brave_win?
         result = calculate_of_exp_and_gold
         puts "#{@brave.name}はたたかいに勝った"
         puts "#{result[:exp]}の経験値と#{result[:gold]}ゴールドを獲得した"
