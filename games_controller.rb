@@ -1,20 +1,18 @@
 class GamesController
+  EXP_CONSTANT = 2
+  GOLD_CONSTANT = 3
 
   def battle(**params)
-    brave = params[:brave]
-    monster = params[:monster]
-
-    EXP_CONSTANT = 2
-    GOLD_CONSTANT = 3
+    build_characters(params)
 
     loop do
       @brave.attack(@monster)
       break if battle_end?
       @monster.attack(@brave)
       break if battle_end?
-
-      battle_judgement
     end
+
+    battle_judgment
   end
 
   private
@@ -25,14 +23,14 @@ class GamesController
     end
 
     def battle_end?
-      @brave.hp < 0 || @monster.hp < 0
+      @brave.hp <= 0 || @monster.hp <= 0
     end
 
     def brave_win?
-      @brave.hp < 0
+      @brave.hp > 0
     end
 
-    def battle_judgement
+    def battle_judgment
       if brave_win?
         result = calculate_of_exp_and_gold
         puts "#{@brave.name}はたたかいに勝った"
@@ -50,4 +48,5 @@ class GamesController
 
       result
     end
+
 end
