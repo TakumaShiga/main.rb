@@ -2,7 +2,7 @@ require './message_dialog'
 
 class GamesController
   include MessageDialog
-  
+
   EXP_CONSTANT = 2
   GOLD_CONSTANT = 3
 
@@ -45,7 +45,7 @@ class GamesController
         exp = (@monster.offense + @monster.defense) * EXP_CONSTANT
         gold = (@monster.offense + @monster.defense) * GOLD_CONSTANT
       else
-        brave_win = false
+        brave_win_flag = false
         exp = 0
         gold = 0
       end

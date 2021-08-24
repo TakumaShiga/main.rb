@@ -26,7 +26,7 @@ class Monster < Character
     damage = calculate_damage(brave)
     cause_damage(target: brave, damage: damage)
 
-    attack_message
+    attack_message(target: brave)
     damage_message(target: brave, damage: damage)
 
   end
