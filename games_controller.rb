@@ -1,4 +1,8 @@
+require './message_dialog'
+
 class GamesController
+  include MessageDialog
+  
   EXP_CONSTANT = 2
   GOLD_CONSTANT = 3
 
